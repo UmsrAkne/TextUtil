@@ -1,21 +1,27 @@
-﻿using System.Windows;
-using Microsoft.Xaml.Behaviors;
-using TextUtil.ViewModels;
-
-namespace TextUtil.Models
+﻿namespace TextUtil.Models
 {
-    class DropBehavior : Behavior<Window>
-    {
+    using System.Windows;
+    using Microsoft.Xaml.Behaviors;
+    using TextUtil.ViewModels;
 
+    public class DropBehavior : Behavior<Window>
+    {
         protected override void OnAttached()
         {
             base.OnAttached();
 
             // ファイルをドラッグしてきて、コントロール上に乗せた際の処理
-            AssociatedObject.PreviewDragOver += AssociatedObject_PreviewDragOver;
+            AssociatedObject.PreviewDragOver += this.AssociatedObject_PreviewDragOver;
 
             // ファイルをドロップした際の処理
-            AssociatedObject.Drop += AssociatedObject_Drop;
+            AssociatedObject.Drop += this.AssociatedObject_Drop;
+        }
+
+        protected override void OnDetaching()
+        {
+            base.OnDetaching();
+            AssociatedObject.PreviewDragOver -= this.AssociatedObject_PreviewDragOver;
+            AssociatedObject.Drop -= this.AssociatedObject_Drop;
         }
 
         private void AssociatedObject_Drop(object sender, DragEventArgs e)
@@ -32,13 +38,6 @@ namespace TextUtil.Models
         {
             e.Effects = DragDropEffects.Copy;
             e.Handled = e.Data.GetDataPresent(DataFormats.FileDrop);
-        }
-
-        protected override void OnDetaching()
-        {
-            base.OnDetaching();
-            AssociatedObject.PreviewDragOver -= AssociatedObject_PreviewDragOver;
-            AssociatedObject.Drop -= AssociatedObject_Drop;
         }
     }
 }

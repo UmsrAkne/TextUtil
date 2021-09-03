@@ -1,25 +1,27 @@
-﻿using Prism.Mvvm;
-using System.IO;
-
-namespace TextUtil.ViewModels
+﻿namespace TextUtil.ViewModels
 {
+    using System.IO;
+    using Prism.Mvvm;
+
     public class MainWindowViewModel : BindableBase
     {
-        private string _title = "Prism Application";
-        public string Title {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
-
-        private FileInfo _currentFileInfo;
-        public FileInfo CurrentFileInfo {
-            get { return _currentFileInfo; }
-            set { SetProperty(ref _currentFileInfo, value); }
-        }
+        private string title = "Prism Application";
+        private FileInfo currentFileInfo;
 
         public MainWindowViewModel()
         {
+        }
 
+        public string Title 
+        {
+            get { return title; }
+            set { SetProperty(ref title, value); }
+        }
+
+        public FileInfo CurrentFileInfo
+        {
+            get { return currentFileInfo; }
+            set { SetProperty(ref currentFileInfo, value); }
         }
     }
 }
