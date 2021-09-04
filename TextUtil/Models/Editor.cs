@@ -7,8 +7,12 @@
     {
         public string Text { get; set; }
 
+        public List<string> History { get; private set; } = new List<string>();
+
         public void InsertCounterToLineHeader(string target)
         {
+            SaveHistory();
+
             string[] delimiter = { Environment.NewLine };
             var lines = new List<string>(Text.Split(delimiter, StringSplitOptions.None));
             Text = string.Empty;
@@ -27,6 +31,15 @@
 
             // 最後尾に挿入される改行コード \r\n を削除
             Text = Text.Remove(Text.Length - 2);
+        }
+
+        private void SaveHistory()
+        {
+            History.Add(Text);
+            if (History.Count > 10)
+            {
+                History.RemoveAt(0);
+            }
         }
     }
 }
