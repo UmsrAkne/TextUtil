@@ -21,9 +21,12 @@
                     count++;
                 }
 
-                line = line.Contains(target) ? count + line : "0" + line;
+                line = line.Contains(target) ? $"{string.Format("{0:D3}", count)},{line}" : $"000,{line}";
                 Text += line + Environment.NewLine;
             });
+
+            // 最後尾に挿入される改行コード \r\n を削除
+            Text = Text.Remove(Text.Length - 2);
         }
     }
 }

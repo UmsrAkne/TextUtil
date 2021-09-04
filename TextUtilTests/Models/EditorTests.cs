@@ -19,7 +19,7 @@ using TextUtil.Models;
 
             editor.Text = text;
             editor.InsertCounterToLineHeader("T");
-            Assert.AreEqual(editor.Text, "1aTest\r\n2aTest\r\n0btest\r\n3cTest\r\n");
+            Assert.AreEqual(editor.Text, "001,aTest\r\n002,aTest\r\n000,btest\r\n003,cTest");
         }
     }
 }
