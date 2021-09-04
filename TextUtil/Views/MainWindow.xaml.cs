@@ -1,7 +1,7 @@
-﻿using System.Windows;
-
-namespace TextUtil.Views
+﻿namespace TextUtil.Views
 {
+    using System.Windows;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

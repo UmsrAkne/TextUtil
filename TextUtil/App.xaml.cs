@@ -1,10 +1,9 @@
-﻿using TextUtil.Views;
-using Prism.Ioc;
-using Prism.Modularity;
-using System.Windows;
-
-namespace TextUtil
+﻿namespace TextUtil
 {
+    using System.Windows;
+    using Prism.Ioc;
+    using TextUtil.Views;
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
@@ -17,7 +16,6 @@ namespace TextUtil
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
         }
     }
 }
