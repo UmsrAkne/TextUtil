@@ -1,6 +1,7 @@
 ﻿namespace TextUtil.ViewModels
 {
     using System.IO;
+    using Prism.Commands;
     using Prism.Mvvm;
     using TextUtil.Models;
 
@@ -8,6 +9,8 @@
     {
         private string title = "Prism Application";
         private FileInfo currentFileInfo;
+
+        private DelegateCommand<string> insertNumberToHeadCommand;
 
         public MainWindowViewModel()
         {
@@ -37,6 +40,14 @@
             }
         }
 
-        public Editor Editor { get; set; } = new Editor(); 
+        public Editor Editor { get; set; } = new Editor();
+
+        public DelegateCommand<string> InsertNumberToHeadCommand 
+        {
+            get => insertNumberToHeadCommand ?? (insertNumberToHeadCommand = new DelegateCommand<string>((string param) =>
+            {
+                Editor.InsertCounterToLineHeader(param);
+            }));
+        }
     }
 }

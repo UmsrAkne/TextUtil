@@ -34,9 +34,29 @@
 
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <TextBlock Text="Path :" />
-            <TextBlock Margin="10,0" Text="ファイルパス" />
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Path :" />
+                <TextBlock Margin="10,0" Text="{Binding CurrentFileInfo.FullName}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+
+                <Button
+                    Margin="0,3"
+                    Command="{Binding InsertNumberToHeadCommand}"
+                    CommandParameter="{Binding Text, ElementName=paramTextBox}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox
+                                Name="paramTextBox"
+                                Width="40"
+                                Margin="0,0,5,0" />
+                            <TextBlock Margin="3,0" Text="を含む行に連番を付ける" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+            </StackPanel>
         </StackPanel>
 
         <TextBox Grid.Row="2" Text="{Binding Editor.Text}" />
