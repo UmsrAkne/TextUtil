@@ -1,5 +1,6 @@
 ﻿namespace TextUtil.Models
 {
+    using System.IO;
     using System.Windows;
     using Microsoft.Xaml.Behaviors;
     using TextUtil.ViewModels;

@@ -2,10 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using Prism.Mvvm;
 
-    public class Editor
+    public class Editor : BindableBase
     {
-        public string Text { get; set; }
+        private string text;
+
+        public string Text { get => text; set => SetProperty(ref text, value); }
 
         public List<string> History { get; private set; } = new List<string>();
 

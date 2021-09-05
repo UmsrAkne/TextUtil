@@ -2,6 +2,7 @@
 {
     using System.IO;
     using Prism.Mvvm;
+    using TextUtil.Models;
 
     public class MainWindowViewModel : BindableBase
     {
@@ -20,8 +21,22 @@
 
         public FileInfo CurrentFileInfo
         {
-            get { return currentFileInfo; }
-            set { SetProperty(ref currentFileInfo, value); }
+            get 
+            { 
+                return currentFileInfo;
+            }
+
+            set 
+            {
+                using (var reader = new StreamReader(value.FullName))
+                {
+                    Editor.Text = reader.ReadToEnd();
+                }
+
+                SetProperty(ref currentFileInfo, value);
+            }
         }
+
+        public Editor Editor { get; set; } = new Editor(); 
     }
 }

@@ -39,6 +39,6 @@
             <TextBlock Margin="10,0" Text="ファイルパス" />
         </StackPanel>
 
-        <TextBox Grid.Row="2" />
+        <TextBox Grid.Row="2" Text="{Binding Editor.Text}" />
     </Grid>
 </Window>
