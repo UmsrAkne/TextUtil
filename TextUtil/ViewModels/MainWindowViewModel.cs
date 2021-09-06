@@ -17,7 +17,7 @@
         {
         }
 
-        public string Title 
+        public string Title
         {
             get { return title; }
             set { SetProperty(ref title, value); }
@@ -25,12 +25,12 @@
 
         public FileInfo CurrentFileInfo
         {
-            get 
-            { 
+            get
+            {
                 return currentFileInfo;
             }
 
-            set 
+            set
             {
                 using (var reader = new StreamReader(value.FullName))
                 {
@@ -43,7 +43,7 @@
 
         public Editor Editor { get; set; } = new Editor();
 
-        public DelegateCommand<string> InsertNumberToHeadCommand 
+        public DelegateCommand<string> InsertNumberToHeadCommand
         {
             get => insertNumberToHeadCommand ?? (insertNumberToHeadCommand = new DelegateCommand<string>((string param) =>
             {
@@ -58,5 +58,5 @@
                 File.WriteAllText(CurrentFileInfo.FullName, Editor.Text);
             }
         }));
-}
+    }
 }
