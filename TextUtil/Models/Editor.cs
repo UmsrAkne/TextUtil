@@ -26,7 +26,7 @@
             Text = string.Empty;
             int count = 0;
 
-            lines.ForEach(line => 
+            lines.ForEach(line =>
             {
                 if (line.Contains(target))
                 {
