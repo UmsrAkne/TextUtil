@@ -11,6 +11,7 @@
         private FileInfo currentFileInfo;
 
         private DelegateCommand<string> insertNumberToHeadCommand;
+        private DelegateCommand saveCommand;
 
         public MainWindowViewModel()
         {
@@ -49,5 +50,13 @@
                 Editor.InsertCounterToLineHeader(param);
             }));
         }
-    }
+
+        public DelegateCommand SaveCommand => saveCommand ?? (saveCommand = new DelegateCommand(() =>
+        {
+            if (CurrentFileInfo != null)
+            {
+                File.WriteAllText(CurrentFileInfo.FullName, Editor.Text);
+            }
+        }));
+}
 }
