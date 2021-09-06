@@ -14,6 +14,11 @@
 
         public void InsertCounterToLineHeader(string target)
         {
+            if (Text == null || Text == string.Empty)
+            {
+                return;
+            }
+
             SaveHistory();
 
             string[] delimiter = { Environment.NewLine };
