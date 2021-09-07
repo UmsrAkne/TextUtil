@@ -19,7 +19,7 @@
         <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S" />
     </Window.InputBindings>
 
-    <Grid>
+    <Grid Margin="3,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
