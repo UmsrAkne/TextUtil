@@ -23,6 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -63,8 +64,15 @@
             </StackPanel>
         </StackPanel>
 
-        <ScrollViewer
+        <TextBlock
+            x:Name="HorizontalSeparator"
             Grid.Row="2"
+            Height="1"
+            HorizontalAlignment="Stretch"
+            Background="Gray" />
+
+        <ScrollViewer
+            Grid.Row="3"
             Margin="2,0"
             VerticalScrollBarVisibility="Visible">
             <TextBlock Text="{Binding Editor.Text}" />
