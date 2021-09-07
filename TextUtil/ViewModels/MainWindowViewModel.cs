@@ -56,6 +56,7 @@
             if (CurrentFileInfo != null)
             {
                 File.WriteAllText(CurrentFileInfo.FullName, Editor.Text);
+                Editor.Saved = true;
             }
         }));
     }

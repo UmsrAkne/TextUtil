@@ -12,6 +12,8 @@
 
         public List<string> History { get; private set; } = new List<string>();
 
+        public bool Saved { get; set; } = true;
+
         public void InsertCounterToLineHeader(string target)
         {
             if (Text == null || Text == string.Empty)
@@ -19,6 +21,7 @@
                 return;
             }
 
+            Saved = false;
             SaveHistory();
 
             string[] delimiter = { Environment.NewLine };
