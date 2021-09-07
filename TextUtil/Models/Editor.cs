@@ -7,10 +7,13 @@
     public class Editor : BindableBase
     {
         private string text;
+        private bool saved = true;
 
         public string Text { get => text; set => SetProperty(ref text, value); }
 
         public List<string> History { get; private set; } = new List<string>();
+
+        public bool Saved { get => saved; set => SetProperty(ref saved, value); }
 
         public void InsertCounterToLineHeader(string target)
         {
@@ -19,6 +22,7 @@
                 return;
             }
 
+            Saved = false;
             SaveHistory();
 
             string[] delimiter = { Environment.NewLine };
