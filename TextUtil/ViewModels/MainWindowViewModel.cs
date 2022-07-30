@@ -1,6 +1,7 @@
 ﻿namespace TextUtil.ViewModels
 {
     using System.IO;
+    using System.Windows;
     using Prism.Commands;
     using Prism.Mvvm;
     using TextUtil.Models;
@@ -59,5 +60,13 @@
                 Editor.Saved = true;
             }
         }));
+
+        public DelegateCommand LoadFromClipboardCommand => new DelegateCommand(() =>
+        {
+            if (Clipboard.GetText() != string.Empty)
+            {
+                Editor.Text = Clipboard.GetText();
+            }
+        });
     }
 }
