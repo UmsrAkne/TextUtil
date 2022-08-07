@@ -29,7 +29,7 @@
 
         <Menu>
             <MenuItem Header="ファイル">
-                <MenuItem Header="クリップボードからテキストを読み込む" Command="{Binding LoadFromClipboardCommand}" />
+                <MenuItem Command="{Binding LoadFromClipboardCommand}" Header="クリップボードからテキストを読み込む" />
             </MenuItem>
 
             <MenuItem Header="編集">
@@ -61,6 +61,17 @@
                 </TextBlock>
 
             </StackPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Parameter : " />
+                <TextBox Grid.Column="1" Text="{Binding Parameter, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+
             <StackPanel Orientation="Horizontal">
 
                 <Button

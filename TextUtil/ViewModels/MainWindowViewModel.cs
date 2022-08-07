@@ -14,6 +14,8 @@
         private DelegateCommand<string> insertNumberToHeadCommand;
         private DelegateCommand saveCommand;
 
+        private string parameter;
+
         public MainWindowViewModel()
         {
         }
@@ -43,6 +45,8 @@
         }
 
         public Editor Editor { get; set; } = new Editor();
+
+        public string Parameter { get => parameter; set => SetProperty(ref parameter, value); }
 
         public DelegateCommand<string> InsertNumberToHeadCommand
         {
