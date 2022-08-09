@@ -1,60 +1,41 @@
 ﻿namespace TextUtil.Models
 {
-    using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
     using Prism.Mvvm;
 
     public class Editor : BindableBase
     {
-        private string text;
         private bool saved = true;
-        private List<LineText> texts;
-
-        public string Text { get => text; set => SetProperty(ref text, value); }
+        private ObservableCollection<LineText> texts;
 
         public List<string> History { get; private set; } = new List<string>();
 
-        public List<LineText> Texts { get => texts; set => SetProperty(ref texts, value); }
+        public ObservableCollection<LineText> Texts { get => texts; set => SetProperty(ref texts, value); }
 
         public bool Saved { get => saved; set => SetProperty(ref saved, value); }
 
         public void InsertCounterToLineHeader(string target)
         {
-            if (Text == null || Text == string.Empty)
+            if (Texts.Count == 0)
             {
                 return;
             }
 
             Saved = false;
-            SaveHistory();
 
-            string[] delimiter = { Environment.NewLine };
-            var lines = new List<string>(Text.Split(delimiter, StringSplitOptions.None));
-            Text = string.Empty;
             int count = 0;
 
-            lines.ForEach(line =>
+            Texts.ToList().ForEach(line =>
             {
-                if (line.Contains(target))
+                if (line.Text.Contains(target))
                 {
                     count++;
                 }
 
-                line = line.Contains(target) ? $"{string.Format("{0:D3}", count)},{line}" : $"000,{line}";
-                Text += line + Environment.NewLine;
+                line.Text = line.Text.Contains(target) ? $"{string.Format("{0:D3}", count)},{line.Text}" : $"000,{line.Text}";
             });
-
-            // 最後尾に挿入される改行コード \r\n を削除
-            Text = Text.Remove(Text.Length - 2);
-        }
-
-        private void SaveHistory()
-        {
-            History.Add(Text);
-            if (History.Count > 10)
-            {
-                History.RemoveAt(0);
-            }
         }
     }
 }
