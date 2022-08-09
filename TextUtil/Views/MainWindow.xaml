@@ -6,8 +6,8 @@
     xmlns:models="clr-namespace:TextUtil.Models"
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding Title}"
-    Width="525"
-    Height="350"
+    Width="1200"
+    Height="720"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowDrop="True">
 
@@ -99,11 +99,13 @@
             HorizontalAlignment="Stretch"
             Background="Gray" />
 
-        <ScrollViewer
-            Grid.Row="3"
-            Margin="2,0"
-            VerticalScrollBarVisibility="Visible">
-            <TextBlock Text="{Binding Editor.Text}" />
-        </ScrollViewer>
+        <ListView Grid.Row="3" ItemsSource="{Binding Editor.Texts}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </Grid>
 </Window>

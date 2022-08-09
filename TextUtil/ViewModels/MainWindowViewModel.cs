@@ -1,6 +1,8 @@
 ﻿namespace TextUtil.ViewModels
 {
+    using System.Collections.ObjectModel;
     using System.IO;
+    using System.Linq;
     using System.Windows;
     using Prism.Commands;
     using Prism.Mvvm;
@@ -35,10 +37,8 @@
 
             set
             {
-                using (var reader = new StreamReader(value.FullName))
-                {
-                    Editor.Text = reader.ReadToEnd();
-                }
+                var lines = File.ReadAllLines(value.FullName);
+                Editor.Texts = new ObservableCollection<LineText>(lines.Select(t => new LineText() { Text = t }).ToList());
 
                 SetProperty(ref currentFileInfo, value);
             }
@@ -58,18 +58,18 @@
 
         public DelegateCommand SaveCommand => saveCommand ?? (saveCommand = new DelegateCommand(() =>
         {
-            if (CurrentFileInfo != null)
-            {
-                File.WriteAllText(CurrentFileInfo.FullName, Editor.Text);
-                Editor.Saved = true;
-            }
+            // if (CurrentFileInfo != null)
+            // {
+            //     File.WriteAllText(CurrentFileInfo.FullName, Editor.Text);
+            //     Editor.Saved = true;
+            // }
         }));
 
         public DelegateCommand LoadFromClipboardCommand => new DelegateCommand(() =>
         {
             if (Clipboard.GetText() != string.Empty)
             {
-                Editor.Text = Clipboard.GetText();
+                // Editor.Text = Clipboard.GetText();
             }
         });
     }
