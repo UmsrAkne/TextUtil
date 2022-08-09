@@ -6,8 +6,8 @@
     xmlns:models="clr-namespace:TextUtil.Models"
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding Title}"
-    Width="525"
-    Height="350"
+    Width="1200"
+    Height="720"
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowDrop="True">
 
