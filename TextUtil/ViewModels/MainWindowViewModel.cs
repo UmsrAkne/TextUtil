@@ -1,6 +1,7 @@
 ﻿namespace TextUtil.ViewModels
 {
     using System.IO;
+    using System.Linq;
     using System.Windows;
     using Prism.Commands;
     using Prism.Mvvm;
@@ -39,6 +40,9 @@
                 {
                     Editor.Text = reader.ReadToEnd();
                 }
+
+                var lines = File.ReadAllLines(value.FullName);
+                Editor.Texts = lines.Select(t => new LineText() { Text = t }).ToList();
 
                 SetProperty(ref currentFileInfo, value);
             }

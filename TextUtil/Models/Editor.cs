@@ -8,10 +8,13 @@
     {
         private string text;
         private bool saved = true;
+        private List<LineText> texts;
 
         public string Text { get => text; set => SetProperty(ref text, value); }
 
         public List<string> History { get; private set; } = new List<string>();
+
+        public List<LineText> Texts { get => texts; set => SetProperty(ref texts, value); }
 
         public bool Saved { get => saved; set => SetProperty(ref saved, value); }
 
