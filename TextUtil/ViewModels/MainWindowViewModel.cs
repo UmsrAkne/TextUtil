@@ -72,5 +72,10 @@
                 // Editor.Text = Clipboard.GetText();
             }
         });
+
+        public DelegateCommand SendToClipboardCommand => new DelegateCommand(() =>
+        {
+            Clipboard.SetText(Editor.GetText());
+        });
     }
 }

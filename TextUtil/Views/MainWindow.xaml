@@ -30,6 +30,7 @@
         <Menu>
             <MenuItem Header="ファイル">
                 <MenuItem Command="{Binding LoadFromClipboardCommand}" Header="クリップボードからテキストを読み込む" />
+                <MenuItem Command="{Binding SendToClipboardCommand}" Header="クリップボードにテキストを出力" />
             </MenuItem>
 
             <MenuItem Header="編集">

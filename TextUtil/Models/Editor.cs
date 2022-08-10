@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Text;
     using Prism.Mvvm;
 
     public class Editor : BindableBase
@@ -36,6 +37,18 @@
 
                 line.Text = line.Text.Contains(target) ? $"{string.Format("{0:D3}", count)},{line.Text}" : $"000,{line.Text}";
             });
+        }
+
+        public string GetText()
+        {
+            var builder = new StringBuilder();
+
+            foreach (var line in Texts)
+            {
+                builder.AppendLine(line.Text);
+            }
+
+            return builder.ToString();
         }
     }
 }
