@@ -25,6 +25,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Menu>
@@ -41,28 +42,6 @@
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
 
         <StackPanel Grid.Row="1">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Path :" />
-                <TextBlock Margin="10,0" Text="{Binding CurrentFileInfo.FullName}" />
-
-                <TextBlock Foreground="Red">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Editor.Saved}" Value="true">
-                                    <Setter Property="Text" Value="" />
-                                </DataTrigger>
-
-                                <DataTrigger Binding="{Binding Editor.Saved}" Value="false">
-                                    <Setter Property="Text" Value="(modified)" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-
-            </StackPanel>
-
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -107,6 +86,29 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
+            <TextBlock Text="Path :" />
+            <TextBlock Margin="10,0" Text="{Binding CurrentFileInfo.FullName}" />
+
+            <TextBlock Foreground="Red">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Editor.Saved}" Value="true">
+                                <Setter Property="Text" Value="" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding Editor.Saved}" Value="false">
+                                <Setter Property="Text" Value="(modified)" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+        </StackPanel>
+
 
     </Grid>
 </Window>
