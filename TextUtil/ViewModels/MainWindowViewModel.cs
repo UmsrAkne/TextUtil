@@ -1,5 +1,6 @@
 ﻿namespace TextUtil.ViewModels
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
@@ -13,7 +14,6 @@
         private string title = "Prism Application";
         private FileInfo currentFileInfo;
 
-        private DelegateCommand<string> insertNumberToHeadCommand;
         private DelegateCommand saveCommand;
 
         private string parameter;
@@ -48,13 +48,10 @@
 
         public string Parameter { get => parameter; set => SetProperty(ref parameter, value); }
 
-        public DelegateCommand<string> InsertNumberToHeadCommand
+        public DelegateCommand InsertNumberToHeadCommand => new DelegateCommand(() =>
         {
-            get => insertNumberToHeadCommand ?? (insertNumberToHeadCommand = new DelegateCommand<string>((string param) =>
-            {
-                Editor.InsertCounterToLineHeader(param);
-            }));
-        }
+            Editor.InsertCounterToLineHeader(Parameter);
+        });
 
         public DelegateCommand SaveCommand => saveCommand ?? (saveCommand = new DelegateCommand(() =>
         {
@@ -69,7 +66,8 @@
         {
             if (Clipboard.GetText() != string.Empty)
             {
-                // Editor.Text = Clipboard.GetText();
+                var lines = Clipboard.GetText().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                Editor.Texts = new ObservableCollection<LineText>(lines.ToList().Select(t => new LineText() { Text = t }));
             }
         });
 

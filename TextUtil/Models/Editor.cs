@@ -19,7 +19,7 @@
 
         public void InsertCounterToLineHeader(string target)
         {
-            if (Texts.Count == 0)
+            if (Texts == null || Texts.Count == 0 || string.IsNullOrWhiteSpace(target))
             {
                 return;
             }
