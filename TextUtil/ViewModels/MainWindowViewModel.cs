@@ -13,7 +13,6 @@
         private string title = "Prism Application";
         private FileInfo currentFileInfo;
 
-        private DelegateCommand<string> insertNumberToHeadCommand;
         private DelegateCommand saveCommand;
 
         private string parameter;
@@ -48,13 +47,10 @@
 
         public string Parameter { get => parameter; set => SetProperty(ref parameter, value); }
 
-        public DelegateCommand<string> InsertNumberToHeadCommand
+        public DelegateCommand InsertNumberToHeadCommand => new DelegateCommand(() =>
         {
-            get => insertNumberToHeadCommand ?? (insertNumberToHeadCommand = new DelegateCommand<string>((string param) =>
-            {
-                Editor.InsertCounterToLineHeader(param);
-            }));
-        }
+            Editor.InsertCounterToLineHeader(Parameter);
+        });
 
         public DelegateCommand SaveCommand => saveCommand ?? (saveCommand = new DelegateCommand(() =>
         {

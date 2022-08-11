@@ -35,7 +35,15 @@
             </MenuItem>
 
             <MenuItem Header="編集">
-                <MenuItem Header="項目1" />
+                <MenuItem Command="{Binding InsertNumberToHeadCommand}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Parameter}" />
+                            <TextBlock Text="を含む行に連番を付与" />
+                        </StackPanel>
+                    </MenuItem.Header>
+
+                </MenuItem>
             </MenuItem>
         </Menu>
 
@@ -54,10 +62,7 @@
 
             <StackPanel Orientation="Horizontal">
 
-                <Button
-                    Margin="0,3"
-                    Command="{Binding InsertNumberToHeadCommand}"
-                    CommandParameter="{Binding Text, ElementName=paramTextBox}">
+                <Button Margin="0,3" Command="{Binding InsertNumberToHeadCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <TextBox
