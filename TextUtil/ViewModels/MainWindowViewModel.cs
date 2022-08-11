@@ -1,5 +1,6 @@
 ﻿namespace TextUtil.ViewModels
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
@@ -65,7 +66,8 @@
         {
             if (Clipboard.GetText() != string.Empty)
             {
-                // Editor.Text = Clipboard.GetText();
+                var lines = Clipboard.GetText().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                Editor.Texts = new ObservableCollection<LineText>(lines.ToList().Select(t => new LineText() { Text = t }));
             }
         });
 
