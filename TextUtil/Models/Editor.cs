@@ -19,7 +19,7 @@
 
         public void InsertCounterToLineHeader(string target)
         {
-            if (Texts == null || Texts.Count == 0 || string.IsNullOrWhiteSpace(target))
+            if (!CanEdit() || string.IsNullOrWhiteSpace(target))
             {
                 return;
             }
@@ -49,6 +49,11 @@
             }
 
             return builder.ToString();
+        }
+
+        private bool CanEdit()
+        {
+            return Texts != null && Texts.Count != 0;
         }
     }
 }
