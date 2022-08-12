@@ -19,7 +19,7 @@
 
         public void InsertCounterToLineHeader(string target)
         {
-            if (Texts == null || Texts.Count == 0 || string.IsNullOrWhiteSpace(target))
+            if (!CanEdit() || string.IsNullOrWhiteSpace(target))
             {
                 return;
             }
@@ -39,6 +39,41 @@
             });
         }
 
+        /// <summary>
+        /// 前の行と最後尾から文字列を比較し、同じ部分があればそれをカットします。
+        /// </summary>
+        public void TrimSamePartAsPreviousLine()
+        {
+            if (!CanEdit())
+            {
+                return;
+            }
+
+            var previousLineText = string.Empty;
+
+            foreach (LineText line in Texts)
+            {
+                if (previousLineText == string.Empty)
+                {
+                    previousLineText = line.Text;
+                    continue;
+                }
+
+                for (var i = 0; i < line.Text.Length; i++)
+                {
+                    var currentPartStr = line.Text.Substring(line.Text.Length - i);
+                    var previousPartStr = previousLineText.Substring(previousLineText.Length - i);
+
+                    if (currentPartStr != previousPartStr)
+                    {
+                        previousLineText = line.Text;
+                        line.Text = line.Text.Substring(0, line.Text.Length - i + 1);
+                        break;
+                    }
+                }
+            }
+        }
+
         public string GetText()
         {
             var builder = new StringBuilder();
@@ -49,6 +84,11 @@
             }
 
             return builder.ToString();
+        }
+
+        private bool CanEdit()
+        {
+            return Texts != null && Texts.Count != 0;
         }
     }
 }

@@ -44,6 +44,9 @@
                     </MenuItem.Header>
 
                 </MenuItem>
+
+                <MenuItem Command="{Binding TrimSamePartAsPreviousLineCommand}" Header="前の行との重複部分をカット" />
+
             </MenuItem>
         </Menu>
 
