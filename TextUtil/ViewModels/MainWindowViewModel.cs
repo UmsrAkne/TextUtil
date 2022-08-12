@@ -53,6 +53,11 @@
             Editor.InsertCounterToLineHeader(Parameter);
         });
 
+        public DelegateCommand TrimSamePartAsPreviousLineCommand => new DelegateCommand(() =>
+        {
+            Editor.TrimSamePartAsPreviousLine();
+        });
+
         public DelegateCommand SaveCommand => saveCommand ?? (saveCommand = new DelegateCommand(() =>
         {
             // if (CurrentFileInfo != null)
