@@ -36,6 +36,7 @@
             if (History.Count != 0)
             {
                 SetProperty(ref text, History[History.Count - 1]);
+                RaisePropertyChanged(nameof(Text));
                 History.RemoveAt(History.Count - 1);
             }
         }

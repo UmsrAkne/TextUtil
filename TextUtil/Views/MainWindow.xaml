@@ -17,6 +17,7 @@
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S" />
+        <KeyBinding Command="{Binding UndoCommand}" Gesture="Ctrl+Z" />
     </Window.InputBindings>
 
     <Grid Margin="3,0,0,0">

@@ -67,6 +67,11 @@
             // }
         }));
 
+        public DelegateCommand UndoCommand => new DelegateCommand(() =>
+        {
+            Editor.Texts.ToList().ForEach(t => t.Undo());
+        });
+
         public DelegateCommand LoadFromClipboardCommand => new DelegateCommand(() =>
         {
             if (Clipboard.GetText() != string.Empty)
