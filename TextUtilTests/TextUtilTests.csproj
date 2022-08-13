@@ -49,6 +49,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Models\EditorTests.cs" />
+    <Compile Include="Models\LineTextTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
