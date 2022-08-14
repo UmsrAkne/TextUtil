@@ -4,6 +4,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
     using Prism.Mvvm;
 
     public class Editor : BindableBase
@@ -25,17 +26,16 @@
             }
 
             Saved = false;
-
             int count = 0;
 
             Texts.ToList().ForEach(line =>
             {
-                if (line.Text.Contains(target))
+                if (Regex.IsMatch(line.Text, target))
                 {
                     count++;
                 }
 
-                line.Text = line.Text.Contains(target) ? $"{string.Format("{0:D3}", count)},{line.Text}" : $"000,{line.Text}";
+                line.Text = Regex.IsMatch(line.Text, target) ? $"{string.Format("{0:D3}", count)},{line.Text}" : $"000,{line.Text}";
             });
         }
 
