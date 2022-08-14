@@ -11,7 +11,7 @@
 
     public class MainWindowViewModel : BindableBase
     {
-        private string title = "Prism Application";
+        private string title = "Text Util";
         private FileInfo currentFileInfo;
 
         private DelegateCommand saveCommand;
