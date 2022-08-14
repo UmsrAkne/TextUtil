@@ -11,6 +11,10 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowDrop="True">
 
+    <Window.Resources>
+        <models:NumberFormatConverter x:Key="NumberFormatConverter" />
+    </Window.Resources>
+
     <i:Interaction.Behaviors>
         <models:DropBehavior />
     </i:Interaction.Behaviors>
@@ -73,7 +77,25 @@
         <ListView Grid.Row="3" ItemsSource="{Binding Editor.Texts}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Text}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Foreground="Gray"
+                            Text="{Binding Index, Converter={StaticResource NumberFormatConverter}}" />
+
+                        <Border
+                            Grid.Column="1"
+                            Width="1"
+                            Margin="10,0"
+                            Background="DarkRed" />
+
+                        <TextBlock Grid.Column="2" Text="{Binding Text}" />
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

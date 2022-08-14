@@ -38,7 +38,12 @@
             set
             {
                 var lines = File.ReadAllLines(value.FullName);
-                Editor.Texts = new ObservableCollection<LineText>(lines.Select(t => new LineText() { Text = t }).ToList());
+                var lineCounter = 0;
+                Editor.Texts = new ObservableCollection<LineText>(lines.Select(t => new LineText()
+                {
+                    Text = t,
+                    Index = lineCounter++,
+                }).ToList());
 
                 SetProperty(ref currentFileInfo, value);
             }
